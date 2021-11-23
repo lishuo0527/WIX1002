@@ -1,11 +1,5 @@
 
 import java.util.Scanner;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
-
 /**
  *
  * @author Shuo
@@ -16,17 +10,61 @@ public class V1Q3 {
         Scanner input = new Scanner(System.in);
         String equation;
         
-        //enter ax2+bx+c
+        //enter ax2±bx±c
         System.out.print("Enter: quadratic equation: ");
         equation = input.next();
         
         //convert the input string into char array
         char[] chs = equation.toCharArray();
         
-        char aChar = chs[0];
-        char bChar = chs[4];
-        char cChar = chs[7];
-        char s = chs[6];
+        //initialization
+        char s = 0;
+        int a = 0, b = 0, c = 0;
+        
+        //x2±x±c
+        if (chs.length == 6){
+            a = 1;
+            b = 1;
+            char cChar = chs[5];
+            s = chs[4];
+                    //convert char to int
+            c = Character.getNumericValue(cChar);
+        
+        }
+        //x2±bx±c
+        else if  (chs.length == 7 && chs[0] == 'x'){
+            a = 1;
+            char bChar = chs[3];
+            char cChar = chs[6];
+            s = chs[5];
+                    //convert char to int
+            b = Character.getNumericValue(bChar);
+            c = Character.getNumericValue(cChar);
+        
+        }
+        //ax2±x±c
+        else if  (chs.length == 7 && chs[1] == 'x'){
+            b = 1;
+            char aChar = chs[0];
+            char cChar = chs[6];
+            s = chs[5];
+                    //convert char to int
+            a = Character.getNumericValue(aChar);
+            c = Character.getNumericValue(cChar);
+        
+        }
+        //ax2±bx±c
+        else if  (chs.length == 8){
+            char aChar = chs[0];
+            char bChar = chs[4];
+            char cChar = chs[7];
+            s = chs[6];
+                    //convert char to int
+            a = Character.getNumericValue(aChar);
+            b = Character.getNumericValue(bChar);
+            c = Character.getNumericValue(cChar);
+        
+        }        
         
         //sign of c
         int sign = 1;
@@ -34,18 +72,11 @@ public class V1Q3 {
             sign = 1;
         else
             sign = -1;
-        
-        //convert char to int
-        int a = Character.getNumericValue(aChar);
-        int b = Character.getNumericValue(bChar);
-        int c = Character.getNumericValue(cChar);
-        System.out.println(a);
-        System.out.println(b);
-        System.out.println(c);
+
         
         //calculate delta
         int delta = b*b - 4*a*sign*c;
-        System.out.println(delta);
+        //System.out.println(delta);
         
         // display the results
         if (delta < 0){
